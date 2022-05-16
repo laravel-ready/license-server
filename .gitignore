@@ -1,0 +1,17 @@
+.idea/
+
+build/
+node_modules/
+vendor/
+
+*.bak
+*.cache
+*.clover
+*.orig
+
+*.lock
+
+mix-manifest.json
+
+resources/apps/
+.vscode/settings.json
