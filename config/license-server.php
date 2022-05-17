@@ -7,7 +7,7 @@ return [
      * Table name prefixes are used to prevent naming conflicts when using multiple stores
      * or local conflicts with other tables in the database.
      *
-     * Example output: ls_licenses
+     * Example table name: ls_licenses
      *
      * Default: ls
      */
