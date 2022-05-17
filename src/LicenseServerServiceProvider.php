@@ -42,7 +42,7 @@ final class LicenseServerServiceProvider extends ServiceProvider
         // configs
         $this->publishes([
             __DIR__ . '/../config/license-server.php' => $this->app->configPath('license-server.php'),
-        ], 'license-server-config');
+        ], 'license-server-configs');
 
         // migrations
         $migrationsPath = __DIR__ . '/../database/migrations/';
