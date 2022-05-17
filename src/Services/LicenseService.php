@@ -10,7 +10,7 @@ use LaravelReady\LicenseServer\Models\License;
 use LaravelReady\LicenseServer\Support\DomainSupport;
 use LaravelReady\LicenseServer\Exceptions\LicenseException;
 
-class LicenseServer
+class LicenseService
 {
     public function __construct()
     {
