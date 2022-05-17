@@ -57,32 +57,35 @@ class LicenseService
      * @return null | License
      */
     public static function addLicense(
-        string $domain,
         object $licensableModel,
+        string $domain = null,
+        int $userId = null,
         int $expirationDays = null,
         bool $isLifetime = false,
         bool $isTrial = false,
-        int $userId = null
     ): null | License {
-        $domain = self::validateDomain($domain);
-
-        if ($domain === null) {
-            return null;
-        }
-
-        if (self::getLicenseByDomain($domain) !== null) {
-            throw new LicenseException('License already exists for this domain.');
-        } else if ($licensableModel->licensable() === null) {
+        if ($licensableModel->licensable() === null) {
             throw new LicenseException('Given model is not licensable.');
         }
 
         $data = [
-            'domain' => $domain,
             'license_key' => Str::uuid(),
             'is_lifetime' => false,
             'is_trial' => false,
             'user_id' => $userId,
         ];
+
+        if ($domain) {
+            $domain = self::validateDomain($domain);
+
+            if (self::getLicenseByDomain($domain) !== null) {
+                throw new LicenseException('License already exists for this domain.');
+            }
+
+            $data['domain'] = $domain;
+        } else if ($userId === null) {
+            throw new LicenseException('Domain or user id must be provided.');
+        }
 
         if (Config::get('license-server.allow_lifetime_licenses', true) && $isLifetime) {
             $data['is_lifetime'] = true;
@@ -117,28 +120,6 @@ class LicenseService
     }
 
     /**
-     * Get specific license.
-     *
-     * @param string $domain
-     * @param string $licenseKey
-     *
-     * @return null | License
-     */
-    public static function getLicense(string $domain, string $licenseKey): null | License
-    {
-        $domain = self::validateDomain($domain);
-
-        if ($domain === null || !Str::isUuid($licenseKey)) {
-            return null;
-        }
-
-        return License::where([
-            ['domain', '=', $domain],
-            ['license_key', '=', $licenseKey],
-        ])->first();
-    }
-
-    /**
      * Get license by key.
      *
      * @param string $licenseKey
@@ -155,54 +136,74 @@ class LicenseService
     }
 
     /**
-     * Get license by domain.
+     * Get license by user id.
      *
-     * @param string $domain
+     * @param int $userId
+     * @param string $licenseKey
      *
      * @return null | License
      */
-    public static function getLicenseByDomain(string $domain): null | License
+    public static function getLicenseByUserId(int $userId, string $licenseKey = null): null | License
     {
-        $domain = self::validateDomain($domain);
-
-        if ($domain === null) {
+        if ($licenseKey && !Str::isUuid($licenseKey)) {
             return null;
         }
 
-        return License::where('domain', $domain)->orderBy('id')->first();
+        $licenseQuery = License::where('user_id', $userId);
+
+        if ($licenseKey) {
+            $licenseQuery->where('license_key', $licenseKey);
+        }
+
+        return $licenseQuery->orderBy('id')->first();
     }
 
     /**
-     * Get licenses by multiple domains.
+     * Get license by domain.
      *
-     * @param array $domains
+     * @param string $domain
+     * @param string $licenseKey
+     *
+     * @return null | License
      */
-    public static function getLicensesByDomains(array $domains): Collection
+    public static function getLicenseByDomain(string $domain, string $licenseKey = null): null | License
     {
-        foreach ($domains as $key => $domain) {
-            $domains[$key] = self::validateDomain($domain);
+        $domain = self::validateDomain($domain);
 
-            $domains[$key] = self::getLicenseByDomain($domain);
+        if ($domain === null || ($licenseKey && !Str::isUuid($licenseKey))) {
+            return null;
         }
 
-        return collect($domains);
+        $licenseQuery = License::where([
+            ['domain', '=', $domain],
+        ]);
+
+        if ($licenseKey) {
+            $licenseQuery->where('license_key', $licenseKey);
+        }
+
+        return $licenseQuery->orderBy('id')->first();
     }
 
     /**
      * Check if license is valid.
-     * Returns "active", "inactive", "suspended", "expired" or null.
+     * Returns "active", "inactive", "suspended", "expired", "invalid-license-key" and "no-license-found"
      *
      * @param string $domain
      * @param string $licenseKey
      *
      * @return string
      */
-    public static function checkLicenseStatus(string $domain, string $licenseKey)
+    public static function checkLicenseStatus(string $licenseKey)
     {
-        $license = self::getLicense($domain, $licenseKey);
+        if ($licenseKey && !Str::isUuid($licenseKey)) {
+            return "invalid-license-key";
+        }
 
-        if ($license === null || !Str::isUuid($licenseKey)) {
-            return null;
+        $license = self::getLicenseByKey($licenseKey);
+
+        if ($license === null) {
+            return "no-license-found";
         }
 
         if ($license->expiration_date < now()) {
