@@ -9,12 +9,12 @@ use LaravelReady\LicenseServer\Http\Controllers\Api\AuthController;
  *
  * This routes using for login, list
  */
-Route::prefix('license-server')
+Route::prefix('api/license-server')
     ->name('license-server.')
     ->middleware([
         'api',
         'license-server',
-        'throttle:10,1',
+        'throttle:60,1',
     ])
     ->group(function () {
         Route::prefix('auth')->name('auth.')->group(function () {
@@ -24,7 +24,6 @@ Route::prefix('license-server')
         Route::middleware([
             'auth:sanctum',
             'sanctum-abilities:license-access',
-            // 'abilities:license-access',
         ])->get('xxx', function () {
             return auth()->user();
         });

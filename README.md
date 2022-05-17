@@ -142,6 +142,9 @@ $licenseStatus = LicenseService::setLicenseStatus($licenseKey, "suspended");
 
 You can only set `active`, `inactive`, `suspended` status.
 
+## Ready to Use API
+
+Ready to use API is included with simple resource methods. API endpoint is `/api/license-server/licenses`.
 
 ## Domain Validation
 
@@ -163,4 +166,3 @@ The tls cache is will be stored at the `storage/license-server/iana-tld-list.txt
 [link_license]:         LICENSE
 
 [link_packagist]:       https://packagist.org/packages/laravel-ready/license-server
-
