@@ -73,7 +73,20 @@ class License extends Model
 
     public function getExpiresInAttribute()
     {
+        if ($this->expiration_date < now()) {
+            return 0;
+        }
+
         return Carbon::now()->diffInDays($this->expiration_date);
+    }
+
+    public function getStatusAttribute($value)
+    {
+        if ($this->expiration_date < now()) {
+            return 'expired';
+        }
+
+        return $value;
     }
 
     public function user(): BelongsTo
