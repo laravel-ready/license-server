@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use LaravelReady\LicenseServer\Models\IpAddress;
 use LaravelReady\UltimateSupport\Support\IpSupport;
-use LaravelReady\LicenseServer\Services\LicenseServer;
+use LaravelReady\LicenseServer\Services\LicenseService;
 use LaravelReady\LicenseServer\Http\Controllers\ApiBaseController;
 
 class AuthController extends ApiBaseController
@@ -26,13 +26,20 @@ class AuthController extends ApiBaseController
         $domain = $request->input('ls_domain');
         $licenseKey = $request->input('license_key');
 
-        $license = LicenseServer::getLicense($domain, $licenseKey);
+        $license = LicenseService::getLicenseByDomain($domain, $licenseKey);
 
         if ($license) {
             $license->tokens()->where('name', $domain)->delete();
 
             $ipAddress = IpAddress::where('license_id', $license->id)->first();
             $serverIpAddress = IpSupport::getIP();
+
+            if (!$ipAddress) {
+                $ipAddress = IpAddress::create([
+                    'license_id' => $license->id,
+                    'ip_address' => $serverIpAddress,
+                ]);
+            }
 
             if ($ipAddress && $ipAddress->ip_address == $serverIpAddress) {
                 $licenseAccessToken = $license->createToken($domain, ['license-access']);
@@ -42,16 +49,11 @@ class AuthController extends ApiBaseController
                     'message' => 'Successfully logged in.',
                     'access_token' => explode('|', $licenseAccessToken->plainTextToken)[1],
                 ];
-            } else {
-                IpAddress::create([
-                    'license_id' => $license->id,
-                    'ip_address' => $serverIpAddress,
-                ]);
             }
 
             return response([
                 'status' => false,
-                'message' => 'This IP address is not allowed',
+                'message' => 'This IP address is not allowed. Please contact the license provider.',
             ], 401);
         }
 

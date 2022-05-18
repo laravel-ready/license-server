@@ -31,7 +31,7 @@ php artisan migrate --path=/database/migrations/laravel-ready/license-server
 Configs are very important. You can find them in [license-server.php](config/license-server.php) file. You should read all configs and configure for your needs.
 
 ```bash
-#publish configs
+# publish configs
 php artisan vendor:publish --tag=license-server-configs
 ```
 
@@ -73,7 +73,7 @@ class Product extends Model
 
 Add in your namespace list:
 
-`use LaravelReady\LicenseServer\Services\LicenseServer;`
+`use LaravelReady\LicenseServer\Services\LicenseService;`
 
 and product model
 

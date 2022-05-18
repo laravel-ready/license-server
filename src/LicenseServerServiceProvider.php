@@ -3,11 +3,10 @@
 namespace LaravelReady\LicenseServer;
 
 use Illuminate\Routing\Router;
-use Illuminate\Support\Facades\Config;
 
 use Illuminate\Support\ServiceProvider;
 use LaravelReady\LicenseServer\Support\DomainSupport;
-use LaravelReady\LicenseServer\Services\LicenseServer;
+use LaravelReady\LicenseServer\Services\LicenseService;
 use LaravelReady\LicenseServer\Http\Middleware\DomainGuardMiddleware;
 
 use Laravel\Sanctum\Http\Middleware\CheckAbilities;
@@ -30,7 +29,7 @@ final class LicenseServerServiceProvider extends ServiceProvider
         $this->registerConfigs();
 
         $this->app->singleton('license-server', function () {
-            return new LicenseServer();
+            return new LicenseService();
         });
     }
 
