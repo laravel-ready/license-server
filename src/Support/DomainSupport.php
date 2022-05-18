@@ -2,6 +2,7 @@
 
 namespace LaravelReady\LicenseServer\Support;
 
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
@@ -25,6 +26,10 @@ class DomainSupport
         if (!Storage::exists(self::$publicSuffixList)) {
             self::checkTldCache();
         }
+
+        $parsedUrl = parse_url(Str::lower($domain));
+
+        $domain = $parsedUrl['host'] ?? $parsedUrl['path'];
 
         $topLevelDomains = TopLevelDomains::fromPath(Storage::path(self::$publicSuffixList));
         $domain = Domain::fromIDNA2008($domain);
