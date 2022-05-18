@@ -3,7 +3,6 @@
 namespace LaravelReady\LicenseServer\Services;
 
 use Illuminate\Support\Str;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 
 use LaravelReady\LicenseServer\Models\License;
