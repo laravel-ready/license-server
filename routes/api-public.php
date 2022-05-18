@@ -13,7 +13,7 @@ Route::prefix('api/license-server')
     ->name('license-server.')
     ->middleware([
         'api',
-        'license-server',
+        'ls-domain-guard',
         'throttle:60,1',
     ])
     ->group(function () {

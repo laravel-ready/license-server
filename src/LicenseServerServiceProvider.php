@@ -77,7 +77,7 @@ final class LicenseServerServiceProvider extends ServiceProvider
      */
     private function loadMiddlewares(Router $router): void
     {
-        $router->aliasMiddleware('license-server', DomainGuardMiddleware::class);
+        $router->aliasMiddleware('ls-domain-guard', DomainGuardMiddleware::class);
         $router->aliasMiddleware('sanctum-abilities', CheckAbilities::class);
     }
 }
