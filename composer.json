@@ -1,62 +1,61 @@
 {
-  "name": "laravel-ready/license-server",
-  "description": "License server for Laravel",
-  "type": "library",
-  "license": "MIT",
-  "version": "1.0.0",
-  "keywords": [
-    "laravel",
-    "license",
-    "license-server",
-    "license-manager"
-  ],
-  "authors": [
-    {
-      "name": "EgoistDeveloper",
-      "email": "epsilonelittr@gmail.com"
-    }
-  ],
-  "support": {
-    "issues": "https://github.com/laravel-ready/license-server/issues",
-    "source": "https://github.com/laravel-ready/license-server"
-  },
-  "require": {
-    "php": "^8.0.2",
-    "guzzlehttp/guzzle": "^7.4",
-    "illuminate/support": "^9.0",
-    "jeremykendall/php-domain-parser": "^6.1",
-    "laravel-ready/ultimate-support": "^1.0",
-    "laravel/sanctum": "^2.15"
-  },
-  "require-dev": {
-    "mockery/mockery": "^1.4",
-    "orchestra/testbench": "^7.0.0",
-    "phpunit/phpunit": "^9.5"
-  },
-  "autoload": {
-    "psr-4": {
-      "LaravelReady\\LicenseServer\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Tests\\": "tests"
-    }
-  },
-  "config": {
-    "preferred-install": "dist",
-    "sort-packages": true
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "LaravelReady\\LicenseServer\\LicenseServerServiceProvider"
-      ],
-      "aliases": {
-        "LicenseServer": "LaravelReady\\LicenseServer\\Facades\\LicenseServer"
-      }
-    }
-  },
-  "minimum-stability": "stable",
-  "prefer-stable": true
+    "name": "laravel-ready/license-server",
+    "description": "License server for Laravel",
+    "type": "library",
+    "license": "MIT",
+    "version": "1.0.1",
+    "keywords": [
+        "laravel",
+        "license",
+        "license-server",
+        "license-manager"
+    ],
+    "authors": [
+        {
+            "name": "EgoistDeveloper",
+            "email": "epsilonelittr@gmail.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/laravel-ready/license-server/issues",
+        "source": "https://github.com/laravel-ready/license-server"
+    },
+    "require": {
+        "php": "^8.0.2",
+        "illuminate/support": "^9.0",
+        "jeremykendall/php-domain-parser": "^6.1",
+        "laravel-ready/ultimate-support": "^1.0",
+        "laravel/sanctum": "^2.15"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.4",
+        "orchestra/testbench": "^7.0.0",
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "LaravelReady\\LicenseServer\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelReady\\LicenseServer\\LicenseServerServiceProvider"
+            ],
+            "aliases": {
+                "LicenseServer": "LaravelReady\\LicenseServer\\Facades\\LicenseServer"
+            }
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }
