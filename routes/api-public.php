@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use LaravelReady\LicenseServer\Services\LicenseService;
 use LaravelReady\LicenseServer\Http\Controllers\Api\AuthController;
 
 /**
@@ -23,8 +24,14 @@ Route::prefix('api/license-server')
 
         Route::middleware([
             'auth:sanctum',
-            'sanctum-abilities:license-access',
-        ])->get('xxx', function () {
-            return auth()->user();
+            'ls-license-guard',
+        ])->get('license', function () {
+            $license = auth()->user();
+
+            unset($license['id']);
+            unset($license['user_id']);
+            unset($license['created_by']);
+
+            return $license;
         });
     });

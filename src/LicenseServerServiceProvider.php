@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use LaravelReady\LicenseServer\Support\DomainSupport;
 use LaravelReady\LicenseServer\Services\LicenseService;
 use LaravelReady\LicenseServer\Http\Middleware\DomainGuardMiddleware;
+use LaravelReady\LicenseServer\Http\Middleware\LicenseGuardMiddleware;
 
 use Laravel\Sanctum\Http\Middleware\CheckAbilities;
 
@@ -78,6 +79,7 @@ final class LicenseServerServiceProvider extends ServiceProvider
     private function loadMiddlewares(Router $router): void
     {
         $router->aliasMiddleware('ls-domain-guard', DomainGuardMiddleware::class);
+        $router->aliasMiddleware('ls-license-guard', LicenseGuardMiddleware::class);
         $router->aliasMiddleware('sanctum-abilities', CheckAbilities::class);
     }
 }
