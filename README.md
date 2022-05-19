@@ -18,7 +18,7 @@ Get via composer
 
 `composer require laravel-ready/license-server`
 
-Publish store migrations and migrate
+Publish migrations and migrate
 
 ```bash
 # publish migrations
