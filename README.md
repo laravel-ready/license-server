@@ -7,6 +7,7 @@
 [![Total Downloads][badge_downloads]][link_packagist]
 [![License][badge_license]][link_license]
 
+⚠️ This package is under active development and is not yet stable. There may be some changes in later versions.
 
 **License Server** package, which is a Laravel package that allows you to manage your Laravel applications license. You can use it with any product or service. License Server comes with the agnostic license management system, which allows you to manage your licenses in a simple and easy way. Just add license relation to any product model then you can work in your logic.
 
