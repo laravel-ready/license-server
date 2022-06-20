@@ -68,7 +68,7 @@ return [
     /**
      * Event listeners for License Server
      */
-    'listeners' => [
+    'event_listeners' => [
         /**
          * License checked event listener
          *

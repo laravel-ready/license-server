@@ -16,7 +16,7 @@ final class EventServiceProvider extends ServiceProvider
 
         $eventListeners = [];
 
-        $licenseCheckedListener = Config::get('license-server.listeners.license_checked');
+        $licenseCheckedListener = Config::get('license-server.event_listeners.license_checked');
 
         if ($licenseCheckedListener) {
             if (!class_exists($licenseCheckedListener)) {
