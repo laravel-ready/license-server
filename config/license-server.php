@@ -99,5 +99,14 @@ return [
             LaravelReady\LicenseServer\Http\Controllers\Api\LicenseValidateController::class,
             'licenseValidate'
         ]
-    ]
+    ],
+
+    /**
+     * Addional middlewares for license validation routes
+     *
+     * Package middlewares will be run before this middlewares.
+     *
+     * Default: []
+     */
+    'license_middlewares' => []
 ];

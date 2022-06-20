@@ -29,8 +29,16 @@ Route::prefix('api/license-server')
             ? $licenseController
             : [LicenseValidationController::class, 'licenseValidate'];
 
-        Route::middleware([
+        $licenseMiddlewares = [
             'auth:sanctum',
             'ls-license-guard',
-        ])->post('license', $licenseController);
+        ];
+
+        $addionalMiddlewares = Config::get('license-server.license_middlewares', []);
+
+        if ($addionalMiddlewares && count($addionalMiddlewares)) {
+            $licenseMiddlewares = array_merge($licenseMiddlewares, $addionalMiddlewares);
+        }
+
+        Route::middleware($licenseMiddlewares)->post('license', $licenseController);
     });
