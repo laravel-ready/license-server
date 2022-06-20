@@ -9,7 +9,7 @@ use LaravelReady\LicenseServer\Models\License;
 use LaravelReady\LicenseServer\Events\LicenseChecked;
 use LaravelReady\LicenseServer\Http\Controllers\BaseController;
 
-class LicenseValidateController extends BaseController
+class LicenseValidationController extends BaseController
 {
     /**
      * Validate given license

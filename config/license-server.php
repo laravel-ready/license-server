@@ -80,5 +80,24 @@ return [
          * Default: null
          */
         'license_checked' => null
+    ],
+
+    /**
+     * Custom controllers for License Server
+     */
+    'controllers' => [
+        /**
+         * License validation controller
+         *
+         * You can use this controller to handle license validating
+         *
+         * See the documentation for more information.
+         *
+         * Default: null
+         */
+        'license_validation' => [
+            LaravelReady\LicenseServer\Http\Controllers\Api\LicenseValidateController::class,
+            'licenseValidate'
+        ]
     ]
 ];

@@ -3,7 +3,6 @@
 namespace LaravelReady\LicenseServer\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-
 use LaravelReady\LicenseServer\Models\License;
 use LaravelReady\LicenseServer\Http\Requests\LicenseUpdateRequest;
 use LaravelReady\LicenseServer\Http\Controllers\BaseController;
