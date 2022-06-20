@@ -64,4 +64,21 @@ return [
         'auth:sanctum',
         'throttle:api',
     ],
+
+    /**
+     * Event listeners for License Server
+     */
+    'listeners' => [
+        /**
+         * License checked event listener
+         *
+         * You can use this event to do something when a license is checked.
+         * Also you can handle custom data with this listener.
+         *
+         * See the documentation for more information.
+         *
+         * Default: null
+         */
+        'license_checked' => null
+    ]
 ];

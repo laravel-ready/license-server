@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 use LaravelReady\LicenseServer\Models\IpAddress;
 use LaravelReady\UltimateSupport\Support\IpSupport;
 use LaravelReady\LicenseServer\Services\LicenseService;
-use LaravelReady\LicenseServer\Http\Controllers\ApiBaseController;
+use LaravelReady\LicenseServer\Http\Controllers\BaseController;
 
-class AuthController extends ApiBaseController
+class AuthController extends BaseController
 {
     /**
      * Login with sanctum

@@ -32,6 +32,8 @@ final class LicenseServerServiceProvider extends ServiceProvider
         $this->app->singleton('license-server', function () {
             return new LicenseService();
         });
+
+        $this->app->register(EventServiceProvider::class);
     }
 
     /**

@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use LaravelReady\LicenseServer\Services\LicenseService;
 use LaravelReady\LicenseServer\Http\Controllers\Api\AuthController;
+use LaravelReady\LicenseServer\Http\Controllers\Api\LicenseValidateController;
 
 /**
  * Public routes for License Server connector package
@@ -25,13 +26,5 @@ Route::prefix('api/license-server')
         Route::middleware([
             'auth:sanctum',
             'ls-license-guard',
-        ])->get('license', function () {
-            $license = auth()->user();
-
-            unset($license['id']);
-            unset($license['user_id']);
-            unset($license['created_by']);
-
-            return $license;
-        });
+        ])->post('license', [LicenseValidateController::class, 'licenseValidate']);
     });

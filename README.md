@@ -143,6 +143,43 @@ $licenseStatus = LicenseService::setLicenseStatus($licenseKey, "suspended");
 
 You can only set `active`, `inactive`, `suspended` status.
 
+## 🪢 Events
+
+### 🪡 LicenseChecked Event
+
+You can send custom data with connector and on the license server-side, you can catch this custom data. First you need to create a listener for this event.
+
+```bash
+php artisan make:listener LicenseCheckedListener --event=LicenseChecked
+```
+
+Add class `LicenseChecked` with `LaravelReady\LicenseServer\Events\LicenseChecked` namespace.
+
+Finally, you can retrieve custom data from event.
+
+```php
+<?php
+
+namespace App\Listeners;
+
+use LaravelReady\LicenseServer\Events\LicenseChecked;
+
+class LicenseCheckedListener
+{
+    public function __construct()
+    {
+        //
+    }
+
+    public function handle(LicenseChecked $event)
+    {
+        // $event->license,
+        // $event->data,
+    }
+}
+
+```
+
 ## Ready to Use API
 
 Ready to use API is included with simple resource methods. API endpoint is `/api/license-server/licenses`.
