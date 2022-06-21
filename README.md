@@ -1,4 +1,4 @@
-# Laravel Theme Store
+# License Server
 
 [![EgoistDeveloper Laravel License Server](https://preview.dragon-code.pro/EgoistDeveloper/Laravel-License-Server.svg?brand=laravel)](https://github.com/laravel-ready/license-server)
 
