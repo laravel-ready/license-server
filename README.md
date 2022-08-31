@@ -17,7 +17,9 @@ This package requires [license-connector](https://github.com/laravel-ready/licen
 
 Get via composer
 
-`composer require laravel-ready/license-server`
+```bash
+composer require laravel-ready/license-server
+```
 
 Publish migrations and migrate
 

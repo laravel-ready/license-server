@@ -25,7 +25,7 @@
         "illuminate/support": "^9.0",
         "jeremykendall/php-domain-parser": "^6.1",
         "laravel-ready/ultimate-support": "^1.0",
-        "laravel/sanctum": "^2.15"
+        "laravel/sanctum": "^2.x || ^3.x"
     },
     "require-dev": {
         "mockery/mockery": "^1.4",
