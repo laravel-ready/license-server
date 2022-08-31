@@ -29,8 +29,6 @@ If the above extensions already installed, you can enable them with `php.ini`.
 
 This package requires Laravel 8.x or higher. Other versions are ignored.
 
-- Laravel 8.x or 9.x version
-
 ## 📦 Installation (for Host App)
 
 Get via composer
