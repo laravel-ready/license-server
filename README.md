@@ -13,6 +13,17 @@
 
 This package requires [license-connector](https://github.com/laravel-ready/license-connector) package. **License Connector** is client implementation for License Server. Package for the client makes a request to **License Server** and gets a response.
 
+## 📋 Requirements
+
+### PHP
+- PHP 8.x
+- [intl extension](https://secure.php.net/manual/en/book.intl.php)
+- [json extension](https://secure.php.net/manual/en/book.json.php)
+- [filter extension](https://secure.php.net/manual/en/book.filter.php)
+
+### Laravel
+- Laravel 8.x or 9.x version
+
 ## 📦 Installation (for Host App)
 
 Get via composer
