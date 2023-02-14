@@ -41,7 +41,7 @@ class AuthController extends BaseController
                 ]);
             }
 
-            if ($ipAddress && $ipAddress->ip_address == $serverIpAddress) {
+            if ($ipAddress && $ipAddress->ip_address == $serverIpAddress['ip_address']) {
                 $licenseAccessToken = $license->createToken($domain, ['license-access']);
 
                 return [
