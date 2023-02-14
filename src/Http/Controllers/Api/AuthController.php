@@ -5,7 +5,7 @@ namespace LaravelReady\LicenseServer\Http\Controllers\Api;
 use Illuminate\Http\Request;
 
 use LaravelReady\LicenseServer\Models\IpAddress;
-use LaravelReady\UltimateSupport\Support\IpSupport;
+use LaravelReady\UltimateSupport\Supports\IpSupport;
 use LaravelReady\LicenseServer\Services\LicenseService;
 use LaravelReady\LicenseServer\Http\Controllers\BaseController;
 
