@@ -32,12 +32,12 @@ class AuthController extends BaseController
             $license->tokens()->where('name', $domain)->delete();
 
             $ipAddress = IpAddress::where('license_id', $license->id)->first();
-            $serverIpAddress = IpSupport::getIP();
+            $serverIpAddress = IpSupport::getIpAddress();
 
             if (!$ipAddress) {
                 $ipAddress = IpAddress::create([
                     'license_id' => $license->id,
-                    'ip_address' => $serverIpAddress,
+                    'ip_address' => $serverIpAddress['ip_address'],
                 ]);
             }
 
