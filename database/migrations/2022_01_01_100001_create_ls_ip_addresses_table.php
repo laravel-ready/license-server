@@ -7,6 +7,9 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateLsIpAddressesTable extends Migration
 {
+    protected string $prefix;
+    protected string $table;
+
     public function __construct()
     {
         $this->prefix = Config::get('license-server.default_table_prefix', 'ls');
