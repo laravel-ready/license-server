@@ -7,6 +7,14 @@
 [![Total Downloads][badge_downloads]][link_packagist]
 [![License][badge_license]][link_license]
 
+## ✅ Version Compatibility
+
+| Laravel  | License Server | PHP |
+|:---------|:---------------|:----|
+| 9.x | 1.2.x | ^8.0 |
+| 10.x | 2.x | ^8.1 |
+
+
 ## 📂 About
 
 **License Server** package, which is a Laravel package that allows you to manage your Laravel applications license. You can use it with any product or service. License Server comes with the agnostic license management system, which allows you to manage your licenses in a simple and easy way. Just add license relation to any product model then you can work in your logic.
